@@ -3,6 +3,13 @@ import ProductCreatedEvent from "../../product/event/product-created.event";
 import EventDispatcher from "./event-dispatcher";
 
 describe("Domain events tests", () => {
+  it('should return the same instance for multiple calls', () => {
+    const instance1 = EventDispatcher.getInstance();
+    const instance2 = EventDispatcher.getInstance();
+
+    expect(instance1).toBe(instance2);
+  });
+
   it("should register an event handler", () => {
     const eventDispatcher = new EventDispatcher();
     const eventHandler = new SendEmailWhenProductIsCreatedHandler();
